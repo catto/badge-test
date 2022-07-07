@@ -1,0 +1,15 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  build:
+    environment:
+      name: prod
+      url: https://localhost/
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo '${{ toJSON(github) }}'
+      - run: echo '${{ toJSON(job) }}'
