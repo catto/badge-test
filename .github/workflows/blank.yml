@@ -5,11 +5,13 @@ on:
     branches: [ "main" ]
 jobs:
   build:
+    strategy:
+      matrix:
+        environment: [prod]
     environment:
-      name: prod
+      name: ${{ matrix.environment }}
       url: https://localhost/
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo '${{ toJSON(github) }}'
-      - run: echo '${{ toJSON(job) }}'
+      - run: echo "this environment is ${{ matrix.environment }}"
